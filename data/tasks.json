@@ -32,7 +32,7 @@
       ],
       "dod": "Pica MCP tools (Gmail, Calendar, etc.) appear in agent's available tools",
       "blocked": true,
-      "blockReason": "Waiting for Troy to update openclaw.json manually or request me to do it"
+      "blockedReason": "Waiting for Troy to update openclaw.json manually or request me to do it"
     },
     {
       "id": "task_n8n_mcp_server",
@@ -61,7 +61,7 @@
       ],
       "dod": "n8n MCP tools available for agent to use",
       "blocked": true,
-      "blockReason": "Waiting on Troy to confirm n8n server setup status"
+      "blockedReason": "Waiting on Troy to confirm n8n server setup status"
     },
     {
       "id": "task_notion_cleanup",
@@ -100,7 +100,7 @@
       ],
       "dod": "Notion database has clean, standardized keywords and is searchable",
       "blocked": true,
-      "blockReason": "Waiting for Troy to export Notion database to CSV"
+      "blockedReason": "Waiting for Troy to export Notion database to CSV"
     },
     {
       "id": "task_zoho_client",
@@ -139,7 +139,7 @@
       ],
       "dod": "Client can send 35-50 batch emails to gun shops via Zoho CRM",
       "blocked": true,
-      "blockReason": "Waiting for Troy to schedule client work session"
+      "blockedReason": "Waiting for Troy to schedule client work session"
     },
     {
       "id": "task_review_businesses",
@@ -171,7 +171,9 @@
           "done": false
         }
       ],
-      "dod": "Clear understanding of business priorities and immediate action items"
+      "dod": "Clear understanding of business priorities and immediate action items",
+      "blockedReason": null,
+      "blocked": false
     },
     {
       "id": "task_family_schedule",
@@ -200,27 +202,31 @@
       ],
       "dod": "Family sports schedule tracked and reminders working",
       "blocked": true,
-      "blockReason": "Waiting on calendar integration (n8n MCP server or Google Calendar)"
+      "blockedReason": "Waiting on calendar integration (n8n MCP server or Google Calendar)"
     },
     {
       "id": "task_1770194560129",
       "title": "Do not change config files without explicit instructions",
-      "priority": "Troy has backup of config. Only change config files after discussion and explicit instructions from Troy.",
-      "status": "high",
+      "priority": "high",
+      "status": "backlog",
       "description": "",
       "createdAt": "2026-02-04T08:42:40.129Z",
       "updatedAt": "2026-02-04T08:42:40.130Z",
-      "subtasks": []
+      "subtasks": [],
+      "blockedReason": null,
+      "blocked": false
     },
     {
       "id": "task_1770214080743",
       "title": "Restore kanban web interface at localhost:8080",
       "priority": "urgent",
-      "status": "high",
+      "status": "review",
       "description": "",
       "createdAt": "2026-02-04T14:08:00.743Z",
       "updatedAt": "2026-02-04T15:15:42.538Z",
-      "subtasks": []
+      "subtasks": [],
+      "blockedReason": null,
+      "blocked": false
     },
     {
       "id": "task_1770216336308",
@@ -230,7 +236,9 @@
       "description": "",
       "createdAt": "2026-02-04T14:45:36.308Z",
       "updatedAt": "2026-02-05T04:45:09.562Z",
-      "subtasks": []
+      "subtasks": [],
+      "blockedReason": null,
+      "blocked": false
     },
     {
       "id": "task_1770216347690",
@@ -240,7 +248,9 @@
       "description": "",
       "createdAt": "2026-02-04T14:45:47.690Z",
       "updatedAt": "2026-02-05T04:45:09.614Z",
-      "subtasks": []
+      "subtasks": [],
+      "blockedReason": null,
+      "blocked": false
     },
     {
       "id": "task_1770216364305",
@@ -250,7 +260,9 @@
       "description": "",
       "createdAt": "2026-02-04T14:46:04.305Z",
       "updatedAt": "2026-02-05T04:45:09.665Z",
-      "subtasks": []
+      "subtasks": [],
+      "blockedReason": null,
+      "blocked": false
     },
     {
       "id": "task_1770216375575",
@@ -260,7 +272,9 @@
       "description": "",
       "createdAt": "2026-02-04T14:46:15.575Z",
       "updatedAt": "2026-02-05T04:45:09.717Z",
-      "subtasks": []
+      "subtasks": [],
+      "blockedReason": null,
+      "blocked": false
     },
     {
       "id": "task_1770237890360",
@@ -270,17 +284,21 @@
       "description": "",
       "createdAt": "2026-02-04T20:44:50.360Z",
       "updatedAt": "2026-02-04T20:45:06.218Z",
-      "subtasks": []
+      "subtasks": [],
+      "blockedReason": null,
+      "blocked": false
     },
     {
       "id": "task_1770266677819",
       "title": "Test voice auto-play system",
-      "priority": "Start voice listener on Windows using scripts\\start-voice-listener.bat, then test voice alerts from Max. Docs in memory/VOICE_ALERT_SYSTEM.md",
-      "status": "high",
+      "priority": "medium",
+      "status": "done",
       "description": "",
       "createdAt": "2026-02-05T04:44:37.819Z",
       "updatedAt": "2026-02-05T04:44:37.819Z",
-      "subtasks": []
+      "subtasks": [],
+      "blockedReason": null,
+      "blocked": false
     }
   ],
   "version": "1.0.0",
