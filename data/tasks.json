@@ -299,19 +299,6 @@
       "subtasks": [],
       "blockedReason": null,
       "blocked": false
-    },
-    {
-      "id": "task_20260205224722",
-      "title": "Test new create command",
-      "description": "This is a test task to verify the create command works",
-      "status": "backlog",
-      "priority": "high",
-      "createdAt": "2026-02-05T22:47:22.455253Z",
-      "updatedAt": "2026-02-05T22:47:22.455792Z",
-      "subtasks": [],
-      "comments": [],
-      "blocked": false,
-      "blockedReason": null
     }
   ],
   "version": "1.0.0",
