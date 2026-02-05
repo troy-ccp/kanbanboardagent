@@ -1,0 +1,12 @@
+{
+  "name": "@openclaw-ext/secure-vault",
+  "version": "1.0.0",
+  "description": "Secure credential storage for OpenClaw using OS-level vault",
+  "main": "index.ts",
+  "type": "module",
+  "keywords": ["openclaw", "security", "credentials", "vault"],
+  "dependencies": {
+    "keytar": "^7.9.0",
+    "zod": "^3.22.0"
+  }
+}

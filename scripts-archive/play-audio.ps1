@@ -1,0 +1,1 @@
+[{"player = New-Object System.Media.SoundPlayer;\n$player.SoundLocation = 'C:Userscoach.openclawworkspacemedia\tts_1770127558464.mp3';\n$player.Load();\n$player.PlaySync()": ""}]

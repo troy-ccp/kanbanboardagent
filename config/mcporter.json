@@ -1,0 +1,1 @@
+{"mcpServers": {"pica": {"command": "npx", "args": ["@picahq/mcp"], "env": {"PICA_SECRET": "sk_test_D_5oFXayQJhuezZDIIBvIfOR_7PVjWzyDeJqOj0OLaI"}}}}

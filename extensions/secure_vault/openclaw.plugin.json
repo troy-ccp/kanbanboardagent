@@ -1,0 +1,8 @@
+{
+  "id": "secure_vault",
+  "name": "Secure Vault",
+  "version": "1.0.0",
+  "description": "OS-level credential storage using keytar (Windows Credential Manager, macOS Keychain, Linux libsecret)",
+  "author": "Max",
+  "license": "MIT"
+}
