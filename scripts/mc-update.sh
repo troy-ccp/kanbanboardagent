@@ -540,5 +540,5 @@ if [[ -n "$(git status --porcelain data/tasks.json)" ]]; then
     git add data/tasks.json
     git commit -m "Task update via mc-update.sh: $1 $2"
     echo "✓ Changes committed to git"
-    echo "  Push to GitHub with: git push"
+    git push origin master 2>/dev/null && echo "✓ Pushed to GitHub" || echo "⚠ Push failed - run: git push"
 fi
