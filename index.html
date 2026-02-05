@@ -162,6 +162,12 @@
             font-size: 0.875rem;
         }
 
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
         @media (max-width: 1400px) {
             .board { grid-template-columns: repeat(3, 1fr); }
         }
@@ -211,153 +217,7 @@
     </div>
 
     <script>
-        async function loadTasks() {
-            try {
-                const response = await fetch('data/tasks.json?' + Date.now());
-                const data = await response.json();
-                const tasks = data.tasks || [];
-                const lastUpdated = new Date(data.lastUpdated).toLocaleString();
-
-                document.getElementById('lastUpdated').textContent = lastUpdated;
-                renderTasks(tasks);
-            } catch (error) {
-                console.error('Error loading tasks:', error);
-            }
-        }
-
-        function getPriority(priority) {
-            const icons = { high: '🔴', medium: '🟡', low: '🟢', urgent: '🚨' };
-            return icons[priority] || '⚪';
-        }
-
-        function getPriorityClass(priority) {
-            return priority + '-priority';
-        }
-
-        function renderTasks(tasks) {
-            const columns = {
-                backlog: document.getElementById('col-backlog'),
-                in_progress: document.getElementById('col-in_progress'),
-                on_hold: document.getElementById('col-on_hold'),
-                review: document.getElementById('col-review'),
-                done: document.getElementById('col-done')
-            };
-
-            const morningSummary = {
-                overnightCompleted: [],
-                needsInput: [],
-                inProgress: []
-            };
-
-            // Clear columns
-            Object.values(columns).forEach(col => {
-                const h3 = col.querySelector('h3');
-                col.innerHTML = '';
-                col.appendChild(h3);
-            });
-
-            // Group tasks by status
-            tasks.forEach(task => {
-                const priority = task.priority || 'medium';
-                const blocked = task.blocked || false;
-                const priorityIcon = getPriority(priority);
-
-                const card = document.createElement('div');
-                card.className = `task-card ${getPriorityClass(priority)} ${blocked ? 'blocked' : ''}`;
-
-                let subtasksHtml = '';
-                if (task.subtasks && task.subtasks.length > 0) {
-                    const done = task.subtasks.filter(s => s.done).length;
-                    subtasksHtml = `<div class="task-subtasks">Subtasks: ${done}/${task.subtasks.length} complete</div>`;
-                }
-
-                let blockedHtml = '';
-                if (blocked && task.blockedReason) {
-                    blockedHtml = `<div class="blocked-badge">🔶 ${task.blockedReason}</div>`;
-                }
-
-                card.innerHTML = `
-                    <div class="task-title">
-                        <span>${priorityIcon}</span>
-                        <span>${task.title}</span>
-                    </div>
-                    ${task.description ? `<div class="task-description">${task.description}</div>` : ''}
-                    ${subtasksHtml}
-                    ${blockedHtml}
-                `;
-
-                if (columns[task.status]) {
-                    columns[task.status].appendChild(card);
-                }
-
-                // Morning summary collection
-                if (task.status === 'done' && task.updatedAt) {
-                    const updateDate = new Date(task.updatedAt);
-                    const now = new Date();
-                    const hoursSinceUpdate = (now - updateDate) / (1000 * 60 * 60);
-                    if (hoursSinceUpdate < 24) {
-                        morningSummary.overnightCompleted.push({ ...task, priorityIcon });
-                    }
-                }
-
-                if (blocked && task.status !== 'done') {
-                    morningSummary.needsInput.push({ ...task, priorityIcon });
-                }
-
-                if (task.status === 'in_progress') {
-                    morningSummary.inProgress.push({ ...task, priorityIcon });
-                }
-            });
-
-            // Add empty states
-            Object.entries(columns).forEach(([status, col]) => {
-                const h3 = col.querySelector('h3');
-                if (col.children.length <= 1) {
-                    const empty = document.createElement('div');
-                    empty.className = 'empty-state';
-                    empty.textContent = 'No tasks';
-                    col.appendChild(h3);
-                    col.appendChild(empty);
-                }
-            });
-
-            // Show morning summary if overnight tasks
-            const summaryEl = document.getElementById('morningSummary');
-            if (morningSummary.overnightCompleted.length > 0 ||
-                morningSummary.needsInput.length > 0 ||
-                morningSummary.inProgress.length > 0) {
-                summaryEl.classList.add('visible');
-
-                if (morningSummary.overnightCompleted.length > 0) {
-                    const div = document.getElementById('overnightCompleted');
-                    div.innerHTML = morningSummary.overnightCompleted.map(t =>
-                        `<div class="summary-item"><span class="priority-icon">${t.priorityIcon}</span><span>${t.title}</span></div>`
-                    ).join('');
-                } else {
-                    document.getElementById('overnightCompleted').textContent = 'None';
-                }
-
-                if (morningSummary.needsInput.length > 0) {
-                    const div = document.getElementById('needsInput');
-                    div.innerHTML = morningSummary.needsInput.map(t =>
-                        `<div class="summary-item"><span class="priority-icon">${t.priorityIcon}</span><span>${t.title}</span></div>`
-                    ).join('');
-                } else {
-                    document.getElementById('needsInput').textContent = 'None';
-                }
-
-                if (morningSummary.inProgress.length > 0) {
-                    const div = document.getElementById('inProgress');
-                    div.innerHTML = morningSummary.inProgress.map(t =>
-                        `<div class="summary-item"><span class="priority-icon">${t.priorityIcon}</span><span>${t.title}</span></div>`
-                    ).join('');
-                } else {
-                    document.getElementById('inProgress').textContent = 'None';
-                }
-            }
-        }
-
-        // Initial load
+        // Load tasks on page load
         loadTasks();
 
         // Auto-refresh every 30 seconds
