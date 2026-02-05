@@ -1,0 +1,288 @@
+{
+  "tasks": [
+    {
+      "id": "task_pica_mcp_config",
+      "title": "Configure Pica MCP server in OpenClaw",
+      "description": "Add Pica MCP server configuration to openclaw.json under agents.list section. Currently in ClawHub config but needs to be in main OpenClaw config for tools to load.",
+      "status": "backlog",
+      "priority": "medium",
+      "createdAt": "2026-02-03T06:25:00.000Z",
+      "updatedAt": "2026-02-03T06:25:00.000Z",
+      "subtasks": [
+        {
+          "id": "sub_9",
+          "title": "Add agents.list section to openclaw.json",
+          "done": false
+        },
+        {
+          "id": "sub_10",
+          "title": "Configure Pica MCP server with PICA_SECRET",
+          "done": false
+        },
+        {
+          "id": "sub_11",
+          "title": "Restart gateway to load MCP tools",
+          "done": false
+        },
+        {
+          "id": "sub_12",
+          "title": "Test Pica tools are available to agent",
+          "done": false
+        }
+      ],
+      "dod": "Pica MCP tools (Gmail, Calendar, etc.) appear in agent's available tools",
+      "blocked": true,
+      "blockReason": "Waiting for Troy to update openclaw.json manually or request me to do it"
+    },
+    {
+      "id": "task_n8n_mcp_server",
+      "title": "Configure n8n MCP server",
+      "description": "Troy mentioned setting up n8n MCP server for calendar, Notion, and other integrations. Status unknown.",
+      "status": "backlog",
+      "priority": "high",
+      "createdAt": "2026-02-03T06:35:00.000Z",
+      "updatedAt": "2026-02-03T06:35:00.000Z",
+      "subtasks": [
+        {
+          "id": "sub_16",
+          "title": "Check if n8n MCP server is running",
+          "done": false
+        },
+        {
+          "id": "sub_17",
+          "title": "Configure n8n MCP in openclaw.json",
+          "done": false
+        },
+        {
+          "id": "sub_18",
+          "title": "Test n8n tools (calendar, Notion)",
+          "done": false
+        }
+      ],
+      "dod": "n8n MCP tools available for agent to use",
+      "blocked": true,
+      "blockReason": "Waiting on Troy to confirm n8n server setup status"
+    },
+    {
+      "id": "task_notion_cleanup",
+      "title": "Execute Notion database cleanup",
+      "description": "Clean up 1500+ record Notion database using Ollama DeepSeek R1. Workflow is documented, waiting for CSV export from Troy.",
+      "status": "backlog",
+      "priority": "medium",
+      "createdAt": "2026-02-03T06:40:00.000Z",
+      "updatedAt": "2026-02-03T06:40:00.000Z",
+      "subtasks": [
+        {
+          "id": "sub_19",
+          "title": "Export Notion database to CSV",
+          "done": false
+        },
+        {
+          "id": "sub_20",
+          "title": "Analyze keyword formats and patterns",
+          "done": false
+        },
+        {
+          "id": "sub_21",
+          "title": "Define standardization rules",
+          "done": false
+        },
+        {
+          "id": "sub_22",
+          "title": "Process with Ollama DeepSeek R1",
+          "done": false
+        },
+        {
+          "id": "sub_23",
+          "title": "Validate and import cleaned data back to Notion",
+          "done": false
+        }
+      ],
+      "dod": "Notion database has clean, standardized keywords and is searchable",
+      "blocked": true,
+      "blockReason": "Waiting for Troy to export Notion database to CSV"
+    },
+    {
+      "id": "task_zoho_client",
+      "title": "Help client set up Zoho CRM batch emails",
+      "description": "Troy has 20hrs/week client selling heirloom gun cases. Guide is complete, may need hands-on help with setup.",
+      "status": "backlog",
+      "priority": "high",
+      "createdAt": "2026-02-03T06:45:00.000Z",
+      "updatedAt": "2026-02-03T06:45:00.000Z",
+      "subtasks": [
+        {
+          "id": "sub_24",
+          "title": "Review Zoho batch email guide with client",
+          "done": false
+        },
+        {
+          "id": "sub_25",
+          "title": "Determine which method (Custom Functions/Campaigns/Workflow)",
+          "done": false
+        },
+        {
+          "id": "sub_26",
+          "title": "Set up email template with landing page link",
+          "done": false
+        },
+        {
+          "id": "sub_27",
+          "title": "Configure and test batch sending (35-50 emails)",
+          "done": false
+        },
+        {
+          "id": "sub_28",
+          "title": "Monitor deliverability and metrics",
+          "done": false
+        }
+      ],
+      "dod": "Client can send 35-50 batch emails to gun shops via Zoho CRM",
+      "blocked": true,
+      "blockReason": "Waiting for Troy to schedule client work session"
+    },
+    {
+      "id": "task_review_businesses",
+      "title": "Review Troy's business priorities",
+      "description": "Understand all three businesses (Carolina Countryside Properties, Front Porch Analytics, Front Porch Garden) and identify priorities",
+      "status": "backlog",
+      "priority": "medium",
+      "createdAt": "2026-02-03T06:55:00.000Z",
+      "updatedAt": "2026-02-03T06:55:00.000Z",
+      "subtasks": [
+        {
+          "id": "sub_32",
+          "title": "Review real estate brokerage needs",
+          "done": false
+        },
+        {
+          "id": "sub_33",
+          "title": "Review AI consulting client priorities",
+          "done": false
+        },
+        {
+          "id": "sub_34",
+          "title": "Review Front Porch Garden launch priorities",
+          "done": false
+        },
+        {
+          "id": "sub_35",
+          "title": "Identify highest priority tasks across businesses",
+          "done": false
+        }
+      ],
+      "dod": "Clear understanding of business priorities and immediate action items"
+    },
+    {
+      "id": "task_family_schedule",
+      "title": "Track kids' sports schedules",
+      "description": "Alexa (17): Soccer & Basketball. Cole (15): Cross-country, Basketball, Golf. Help manage schedule and reminders.",
+      "status": "backlog",
+      "priority": "medium",
+      "createdAt": "2026-02-03T07:00:00.000Z",
+      "updatedAt": "2026-02-03T06:00:00.000Z",
+      "subtasks": [
+        {
+          "id": "sub_36",
+          "title": "Set up calendar integration for sports schedules",
+          "done": false
+        },
+        {
+          "id": "sub_37",
+          "title": "Create reminder system for games/events",
+          "done": false
+        },
+        {
+          "id": "sub_38",
+          "title": "Coordinate with Diana on schedule management",
+          "done": false
+        }
+      ],
+      "dod": "Family sports schedule tracked and reminders working",
+      "blocked": true,
+      "blockReason": "Waiting on calendar integration (n8n MCP server or Google Calendar)"
+    },
+    {
+      "id": "task_1770194560129",
+      "title": "Do not change config files without explicit instructions",
+      "priority": "Troy has backup of config. Only change config files after discussion and explicit instructions from Troy.",
+      "status": "high",
+      "description": "",
+      "createdAt": "2026-02-04T08:42:40.129Z",
+      "updatedAt": "2026-02-04T08:42:40.130Z",
+      "subtasks": []
+    },
+    {
+      "id": "task_1770214080743",
+      "title": "Restore kanban web interface at localhost:8080",
+      "priority": "urgent",
+      "status": "high",
+      "description": "",
+      "createdAt": "2026-02-04T14:08:00.743Z",
+      "updatedAt": "2026-02-04T15:15:42.538Z",
+      "subtasks": []
+    },
+    {
+      "id": "task_1770216336308",
+      "title": "Fix kanban board layout - show 4 columns in 2-column space",
+      "priority": "urgent",
+      "status": "done",
+      "description": "",
+      "createdAt": "2026-02-04T14:45:36.308Z",
+      "updatedAt": "2026-02-05T04:45:09.562Z",
+      "subtasks": []
+    },
+    {
+      "id": "task_1770216347690",
+      "title": "Create task archive system with review flag",
+      "priority": "TASKARCHIVE.md with TOON format. When Troy reviews done tasks, archive them on next board update.",
+      "status": "done",
+      "description": "",
+      "createdAt": "2026-02-04T14:45:47.690Z",
+      "updatedAt": "2026-02-05T04:45:09.614Z",
+      "subtasks": []
+    },
+    {
+      "id": "task_1770216364305",
+      "title": "Add blocked/waiting indicator to kanban tasks",
+      "priority": "Make it obvious when task is waiting on Troy or others. Visual indicator on kanban board.",
+      "status": "done",
+      "description": "",
+      "createdAt": "2026-02-04T14:46:04.305Z",
+      "updatedAt": "2026-02-05T04:45:09.665Z",
+      "subtasks": []
+    },
+    {
+      "id": "task_1770216375575",
+      "title": "Analyze kanban: HTML vs custom app solution",
+      "priority": "Priority decision: Can we fix HTML layout for 4 columns? Or need to build/select different solution?",
+      "status": "done",
+      "description": "",
+      "createdAt": "2026-02-04T14:46:15.575Z",
+      "updatedAt": "2026-02-05T04:45:09.717Z",
+      "subtasks": []
+    },
+    {
+      "id": "task_1770237890360",
+      "title": "Install eSpeak-NG for Kokoro TTS",
+      "priority": "Download and install eSpeak-NG for Kokoro TTS server phonemization support",
+      "status": "done",
+      "description": "",
+      "createdAt": "2026-02-04T20:44:50.360Z",
+      "updatedAt": "2026-02-04T20:45:06.218Z",
+      "subtasks": []
+    },
+    {
+      "id": "task_1770266677819",
+      "title": "Test voice auto-play system",
+      "priority": "Start voice listener on Windows using scripts\\start-voice-listener.bat, then test voice alerts from Max. Docs in memory/VOICE_ALERT_SYSTEM.md",
+      "status": "high",
+      "description": "",
+      "createdAt": "2026-02-05T04:44:37.819Z",
+      "updatedAt": "2026-02-05T04:44:37.819Z",
+      "subtasks": []
+    }
+  ],
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-05T04:45:09.718Z"
+}
