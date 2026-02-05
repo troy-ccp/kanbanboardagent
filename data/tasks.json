@@ -299,6 +299,19 @@
       "subtasks": [],
       "blockedReason": null,
       "blocked": false
+    },
+    {
+      "id": "task_20260205231821",
+      "title": "Persistence test",
+      "description": "Verifying auto-push survives restart",
+      "status": "backlog",
+      "priority": "low",
+      "createdAt": "2026-02-05T23:18:21.175601Z",
+      "updatedAt": "2026-02-05T23:18:21.175615Z",
+      "subtasks": [],
+      "comments": [],
+      "blocked": false,
+      "blockedReason": null
     }
   ],
   "version": "1.0.0",
