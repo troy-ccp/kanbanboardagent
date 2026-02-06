@@ -217,6 +217,95 @@
     </div>
 
     <script>
+        const priorityIcons = { urgent: '🚨', high: '🔴', medium: '🟡', low: '🟢' };
+        const columns = ['backlog', 'in_progress', 'on_hold', 'review', 'done'];
+
+        async function loadTasks() {
+            try {
+                const response = await fetch('data/tasks.json?' + Date.now());
+                if (!response.ok) throw new Error('Failed to fetch');
+                const data = await response.json();
+                const tasks = data.tasks || [];
+
+                document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+
+                // Render columns
+                columns.forEach(status => {
+                    const col = document.getElementById('col-' + status);
+                    const heading = col.querySelector('h3');
+                    const statusTasks = tasks.filter(t => t.status === status);
+                    col.innerHTML = '';
+                    col.appendChild(heading);
+
+                    if (statusTasks.length === 0) {
+                        col.innerHTML += '<div class="empty-state">No tasks</div>';
+                        return;
+                    }
+
+                    heading.textContent = heading.textContent.split('(')[0].trim() + ` (${statusTasks.length})`;
+
+                    statusTasks.forEach(task => {
+                        const icon = priorityIcons[task.priority] || '⚪';
+                        const blockedClass = task.blocked ? ' blocked' : '';
+                        const priorityClass = task.priority ? ` ${task.priority}-priority` : '';
+
+                        let subtaskHtml = '';
+                        if (task.subtasks && task.subtasks.length > 0) {
+                            const done = task.subtasks.filter(s => s.done).length;
+                            subtaskHtml = `<div class="task-subtasks">📋 ${done}/${task.subtasks.length} subtasks</div>`;
+                        }
+
+                        let blockedHtml = '';
+                        if (task.blocked && task.blockedReason) {
+                            blockedHtml = `<div class="blocked-badge">🔶 ${task.blockedReason}</div>`;
+                        }
+
+                        const updated = task.updatedAt ? new Date(task.updatedAt).toLocaleDateString() : '';
+
+                        col.innerHTML += `
+                            <div class="task-card${priorityClass}${blockedClass}">
+                                <div class="task-title">${icon} ${task.title}</div>
+                                <div class="task-description">${task.description || ''}</div>
+                                ${blockedHtml}
+                                ${subtaskHtml}
+                                <div class="task-meta">
+                                    <span>${task.id}</span>
+                                    <span>${updated}</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+                });
+
+                // Morning summary
+                const now = new Date();
+                const oneDayAgo = new Date(now - 24 * 60 * 60 * 1000);
+                const completed = tasks.filter(t => t.status === 'done' && t.updatedAt && new Date(t.updatedAt) > oneDayAgo);
+                const blocked = tasks.filter(t => t.blocked);
+                const inProg = tasks.filter(t => t.status === 'in_progress');
+
+                const summaryEl = document.getElementById('morningSummary');
+                if (completed.length > 0 || blocked.length > 0 || inProg.length > 0) {
+                    summaryEl.classList.add('visible');
+
+                    document.getElementById('overnightCompleted').innerHTML = completed.length > 0
+                        ? completed.map(t => `<div class="summary-item">${priorityIcons[t.priority] || '⚪'} ${t.title}</div>`).join('')
+                        : '<div class="summary-item">No recent completions</div>';
+
+                    document.getElementById('needsInput').innerHTML = blocked.length > 0
+                        ? blocked.map(t => `<div class="summary-item">🔶 ${t.title} — ${t.blockedReason || 'Blocked'}</div>`).join('')
+                        : '<div class="summary-item">Nothing blocked</div>';
+
+                    document.getElementById('inProgress').innerHTML = inProg.length > 0
+                        ? inProg.map(t => `<div class="summary-item">🔄 ${t.title}</div>`).join('')
+                        : '<div class="summary-item">Nothing in progress</div>';
+                }
+
+            } catch (err) {
+                console.error('Failed to load tasks:', err);
+            }
+        }
+
         // Load tasks on page load
         loadTasks();
 
