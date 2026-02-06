@@ -1,10 +1,18 @@
 # TOOLS.md - Max's Reference
 
-## Voice Notifications - AUTO-PLAY VOICE ALERTS
+## Voice Notifications - AUTO-PLAY (ALWAYS USE THIS)
 
-**PURPOSE:** Troy's computer sits BEHIND him. Voice alerts prevent him from constantly turning around to check if you're done. **ALWAYS use voice notifications for task completion and waiting for input.**
+**PURPOSE:** Troy's computer sits BEHIND him. Voice alerts prevent him from constantly turning around. **ALWAYS use voice notifications for auto-play speech.**
 
-**HOW TO SEND VOICE NOTIFICATIONS (MANDATORY)**
+**⚠️ CRITICAL RULE: NEVER GENERATE AUDIO FILES FOR TROY TO PLAY HIMSELF**
+
+**ALWAYS USE:** `curl http://host.docker.internal:8881/notify`
+
+**NEVER USE:** `node scripts/kokoro-tts.js` or `tts` tool (these create MP3 files that Troy has to click to play)
+
+---
+
+**HOW TO SEND VOICE NOTIFICATIONS (AUTO-PLAY):**
 
 **Using presets (quick & easy):**
 ```bash
@@ -33,13 +41,19 @@ curl http://host.docker.internal:8881/notify?msg=Troy,+task+complete
 curl "http://host.docker.internal:8881/notify?msg=Troy, I'm done with my task"
 ```
 
+---
+
 **WHEN TO SEND VOICE NOTIFICATIONS (MANDATORY):**
 1. ✅ **Task is COMPLETE** - Tell him it's done
 2. ✅ **Waiting for INPUT** - Tell him you need something
 3. ✅ **Stuck or BLOCKED** - Tell him you need help
 4. ✅ **About to START a long task** - Tell him what you're doing
+5. ✅ **Speaking to anyone** - Always auto-play, never create audio files
+
+---
 
 **Available Presets:**
+
 | Preset | Message |
 |---------|----------|
 | `done` | "Troy, task complete." |
@@ -49,40 +63,19 @@ curl "http://host.docker.internal:8881/notify?msg=Troy, I'm done with my task"
 | `waiting` | "Troy, I'm waiting for your response." |
 | `urgent` | "Troy, this needs your attention." |
 
+---
+
 **TROUBLESHOOTING:**
 - If you get "connection refused" → Run: `curl http://host.docker.internal:8882/start`
 - Full documentation: `skills/notify/SKILL.md`
 
-**VOICE SETTINGS:**
-- Default voice for Troy: am_puck (male, playful)
-- Server: http://host.docker.internal:8881
+---
 
-## Mission Control Kanban Board
+## Kokoro TTS - FOR AUDIO FILES ONLY (NOT AUTO-PLAY)
 
-**CLI Script:** `scripts/kanban-cli.js`
+**⚠️ IMPORTANT:** Only use this when you need to create an audio FILE for some purpose. Do NOT use for auto-play voice notifications to Troy.
 
-**Usage:**
-```bash
-node scripts/kanban-cli.js add "<title>" "<description>" [priority] [status]
-node scripts/kanban-cli.js list [status]
-node scripts/kanban-cli.js update <id> <field> <value>
-node scripts/kanban-cli.js move <id> <status>
-node scripts/kanban-cli.js delete <id>
-node scripts/kanban-cli.js stats
-```
-
-**Priorities:** low | medium | high | urgent
-**Statuses:** backlog | in_progress | review | done
-
-**Rules:**
-- ✅ Add tasks to kanban board immediately when Troy gives them
-- ✅ Update task status when making progress (move to in_progress)
-- ✅ Move tasks to 'done' when completed
-- ✅ Data stored in: `data/tasks.json`
-
-## Kokoro TTS - For Custom Audio Files Only
-
-**Purpose:** Generate TTS audio files for non-notification purposes (e.g., creating audio content, testing)
+**Purpose:** Generate custom TTS audio files for non-notification purposes (e.g., creating audio content, testing)
 
 **Script:** `scripts/kokoro-tts.js`
 
@@ -109,7 +102,26 @@ node scripts/kokoro-tts.js "Fast message" am_puck 1.5
 - Environment variable: `KOKORO_API_URL`
 - Audio saved to: `media/tts_*.mp3`
 
-**IMPORTANT: Use kokoro-tts.js ONLY when you need audio files. For auto-play voice notifications, use the curl commands above.**
+**WHEN TO USE kokoro-tts.js:**
+- ❌ NOT for auto-play voice notifications to Troy
+- ✅ When you need to attach an audio file to a message
+- ✅ When testing voice quality
+- ✅ When creating audio content for other purposes
+
+---
+
+## Mission Control Kanban Board
+
+**CLI Script:** `scripts/mc-update.sh`
+
+**Usage:**
+```bash
+bash scripts/mc-update.sh list
+```
+
+**Data:** `data/tasks.json`
+
+---
 
 ## Telegram Messaging (Backup Communication)
 
@@ -118,19 +130,7 @@ node scripts/kokoro-tts.js "Fast message" am_puck 1.5
 **User ID:** 6416730274 (Troy Harrison)
 **Channel:** telegram
 
-**Usage (via message tool):**
-```javascript
-message({
-  action: "send",
-  to: "6416730274",
-  message: "Your message here",
-  channel: "telegram"
-})
-```
-
-**Use when:**
-- Voice notification system is down
-- Need non-urgent notification
+---
 
 ## Important Notes
 
@@ -138,12 +138,12 @@ message({
 - Pronunciation: "Add-ee" (two syllables)
 - Age: 2 years old
 - Loves: Frozen
-- Voice to use: af_heart
 
 **Communication Protocol:**
-1. **PRIMARY:** Voice notifications (curl to 8881) - Use for EVERY task completion and wait-for-input
+1. **PRIMARY:** Voice notifications (curl to 8881) - Auto-plays
 2. **FALLBACK:** Telegram messages
-3. **Acknowledge immediately** when request takes time
+
+---
 
 ## Archived Items
 
